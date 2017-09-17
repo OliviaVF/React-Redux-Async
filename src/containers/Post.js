@@ -18,7 +18,17 @@ class Post extends Component {
       <div>
         {isLoaded ?
           <div>
+          <div>
             {this.props.singlePost.item[0].data.children[0].data.title}
+          </div>
+
+          <ul>
+            {this.props.singlePost.item[1].data.children.map((comment, i) =>
+              <li key={i}>{comment.data.body}</li>
+            )}
+          </ul>
+        
+
           </div>
           :
           <h2>Loading...</h2>
@@ -33,6 +43,5 @@ const mapStateToProps = (state) => {
     isLoaded: state.singlePost.isLoaded,
   }
 }
-
 
 export default connect(mapStateToProps)(Post)
